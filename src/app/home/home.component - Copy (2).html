@@ -1,0 +1,346 @@
+<app-header></app-header>
+<app-header-mobile></app-header-mobile>
+<div class="page-wrap">
+    <div class="home-banner-sec cf" style="background-image: url(assets/images-nct/home-banner.jpg);">
+        <div class="container">
+            <div class="home-serch">
+                <h1>Activities</h1>
+                <p>"Building friendships and relationships through activities."</p>
+                <form class="d-md-flex align-items-center justify-content-center">
+                    <div class="form-keyword">
+                        <input type="text"  id="keyword" name="keyword" placeholder="Enter keyword(s) to find activities" class="is-form-control">
+                         <i class="is-srch-ico"><img src="assets/images-nct/search-ico.png"></i>
+                    </div>
+                    <div class="form-locate">
+                        <input type="text"  id="location" name="location" placeholder="Enter location" class="is-form-control">
+                        <i class="icon-location-icon"></i>
+                    </div>
+                    <div class="form-search-btn">
+                        <button type="submit" id="activtysubmit" name="activtysubmit" (click)="getSearchResult($event)" class="main-btn sm-btn">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <div class="activity-list-sec cf" *ngIf="HotEventData.length">
+        <div class="container">
+
+            <div *ngIf="isMobile">
+                <div class="d-flex align-items-center justify-content-between home-mobile-heading">
+                    <h2>Hot Activities</h2>
+                    <div class="rgt-seeall ml-auto">
+                        <a href="activity-type/hot-activities">See All</a>
+                    </div>
+                </div>
+
+                <div class="mobile-new-activity-sec">
+                    <div class="general-bx activity-bx cf" *ngFor="let event of HotEventData;let i = index;">
+                        <a href="activity/{{event.event_slug}}">
+                            <div class="d-flex">
+                                <figure class="left-img-mobile">
+                                    <img [src]="event.image">
+                                </figure>
+                                <div class="new-acti-info-mob">
+                                    <!-- <span class="date-txt">{{event.event_date | date}} {{event.event_time}}</span> -->
+                                    <span class="date-txt">{{event.eventdatetime | date:'medium'}}</span>
+                                    <h4>{{event.title}}</h4>
+                                    <p class="location-txt"><i class="icon-location-icon mr-1"></i>{{event.location}}</p>
+                                    <p class="is-desc-home">{{event.description}}</p>
+                                    <small>Participants: <strong>{{event.total_participate}}</strong></small>
+                                    <div class="d-flex align-items-center activity-user-info">
+                                        <figure>
+                                            <img src="{{event.profile_img}}">
+                                        </figure>
+                                        <h3>{{event.first_name}}</h3>
+                                        <div class="rigt-dots dropdown ml-auto">
+                                            <a class="dropdown-toggle" type="button" id="editdelete" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="icon-dots-icon"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="editdelete">
+                                                <a class="dropdown-item" href="activity/{{event.event_slug}}">Report Activity</a>
+                                                <hr>
+                                                <a class="dropdown-item" href="activity/{{event.event_slug}}">Report User</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <!-- <a href="" class="main-btn sm-btn w-100 mt-2" *ngIf="!event.reuest_status">Join</a> -->
+
+                        <div *ngIf="isLoggedIn;then logincontent else not_logincontent">here is ignored</div>
+                        <ng-template #logincontent>
+                            <button href="javascript:;" class="main-btn sm-btn w-100 mt-2 eventbox_joinbtn_{{event.id}}"
+                            *ngIf="event.user_id != isLoggedIn && !event.reuest_status" (click)="joinRequest(event.id)">Join</button>
+                        </ng-template>
+                        <ng-template #not_logincontent>
+                            <a href="signup" class="main-btn sm-btn w-100 mt-2" *ngIf="!event.reuest_status">Join</a>
+                        </ng-template>
+
+                        <a href="javascript:;" class="green-btn sm-btn w-100 mt-2" *ngIf="event.reuest_status == 'a'">Joined</a>
+                        <a href="javascript:;" class="orange-btn sm-btn w-100 mt-2" *ngIf="event.reuest_status == 'p'">Awaiting Response</a>
+
+                         <!-- [include]="['facebook','twitter','linkedin','whatsapp']" -->
+                        <share-buttons  style="text-align: center; font-size: 13px !important;" [theme]="'outline'"
+                         [include]="['facebook','twitter','linkedin','sms','whatsapp','messenger','email','print','copy']"
+                         [show]="4"
+                         url="{{event.shareUrl}}"
+                         title="{{event.title}}"
+                         image="{{event.image}}"
+                         [autoSetMeta]="false"
+                        ></share-buttons>
+
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="isDesktopDevice" >
+                <h2 class="home-heading">Hot Activities</h2>
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 d-md-flex align-items-stretch" *ngFor="let event of HotEventData;let i = index;">
+                        <div class="general-bx activity-bx cf">
+                            <a href="activity/{{event.event_slug}}">
+                                <div class="d-flex align-items-center activity-user-info">
+                                    <figure>
+                                        <img src="{{event.profile_img}}">
+                                    </figure>
+                                    <h3>{{event.first_name}}</h3>
+                                    <div class="rigt-dots dropdown ml-auto">
+                                        <a class="dropdown-toggle" type="button" id="editdelete" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="icon-dots-icon"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="editdelete">
+                                            <a class="dropdown-item" href="activity/{{event.event_slug}}">Report Activity</a>
+                                            <hr>
+                                            <a class="dropdown-item" href="activity/{{event.event_slug}}">Report User</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <h4>{{event.title}}</h4>
+                                <figure>
+                                    <div class="status-info accept-green" *ngIf="event.reuest_status == 'a'">Accepted</div>
+                                    <div class="status-info pending-orange" *ngIf="event.reuest_status == 'p'">Pending</div>
+                                    <img  [src]="event.image" class="activity-img-class">
+                                </figure>
+                                <!-- <span class="date-txt">{{event.event_date | date}} {{event.event_time}}</span><br> -->
+                                <span class="date-txt">{{event.eventdatetime | date:'medium'}}</span>
+                                <p class="location-txt"><i class="icon-location-icon mr-1"></i>{{event.location}}</p>
+                                <p class="is-desc-home">{{event.description}}</p>
+                                <small>Participants: <strong>{{event.total_participate}}</strong></small>
+                                <!-- <a href="" class="orange-btn sm-btn w-100 mt-2">Awaiting</a> -->
+                            </a>
+                            <!-- <a href="" class="main-btn sm-btn w-100 mt-2" *ngIf="!event.reuest_status">Join</a> -->
+                            <div *ngIf="isLoggedIn;then logincontent else not_logincontent">here is ignored</div>
+                            <ng-template #logincontent>
+                                <button href="javascript:;" class="main-btn sm-btn w-100 mt-2 eventbox_joinbtn_{{event.id}}"
+                                *ngIf="event.user_id != isLoggedIn && !event.reuest_status" (click)="joinRequest(event.id)">Join</button>
+                            </ng-template>
+                            <ng-template #not_logincontent>
+                                <a href="signup" class="main-btn sm-btn w-100 mt-2" *ngIf="!event.reuest_status">Join</a>
+                            </ng-template>
+                            <a href="javascript:;" class="green-btn sm-btn w-100 mt-2" *ngIf="event.reuest_status == 'a'">Joined</a>
+                            <a href="javascript:;" class="orange-btn sm-btn w-100 mt-2" *ngIf="event.reuest_status == 'p'">Awaiting Response</a>
+
+                            <share-buttons  style="text-align: center; font-size: 13px !important;" [theme]="'outline'"
+                             [include]="['facebook','twitter','linkedin','sms','whatsapp','messenger','email','telegram','copy']"
+                             [show]="4"
+                             url="{{event.shareUrl}}"
+                             title="{{event.title}}"
+                             image="{{event.image}}"
+                             [autoSetMeta]="false"
+                            ></share-buttons>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="activity-type/hot-activities" class="main-btn sm-btn mt-2">See All</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="advertise-banner-sec" *ngIf="HotEventData.length">
+        <div class="container">
+            <figure>
+                <img src="{{this.firstBanner}}">
+            </figure>
+        </div>
+    </div>
+
+    <div class="activity-list-sec cf" *ngIf="NewEventData.length">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between home-mobile-heading">
+                <h2>Upcoming Activities</h2>
+                <div class="rgt-seeall ml-auto">
+                    <a href="activity-type/upcoming-activities">See All</a>
+                </div>
+            </div>
+            <h2 class="home-heading">Upcoming Activities</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 d-md-flex align-items-stretch" *ngFor="let event of NewEventData;let i = index;">
+                    <div class="general-bx activity-bx cf">
+                        <a href="activity/{{event.event_slug}}">
+                            <div class="d-flex align-items-center activity-user-info">
+                                <figure>
+                                    <img src="{{event.profile_img}}">
+                                </figure>
+                                <h3>{{event.first_name}}</h3>
+                                <div class="rigt-dots dropdown ml-auto">
+                                    <a class="dropdown-toggle" type="button" id="editdelete" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="icon-dots-icon"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="editdelete">
+                                        <a class="dropdown-item" href="activity/{{event.event_slug}}">Report Activity</a>
+                                        <hr>
+                                        <a class="dropdown-item" href="activity/{{event.event_slug}}">Report User</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4>{{event.title}}</h4>
+                            <figure>
+                                <div class="status-info accept-green" *ngIf="event.reuest_status == 'a'">Accepted</div>
+                                <div class="status-info pending-orange" *ngIf="event.reuest_status == 'p'">Pending</div>
+                                <img  [src]="event.image" class="activity-img-class">
+                            </figure>
+                            <!-- <span class="date-txt">{{event.event_date | date}} {{event.event_time}}</span> -->
+                            <span class="date-txt">{{event.eventdatetime | date:'medium'}}</span>
+                            <p class="location-txt"><i class="icon-location-icon mr-1"></i>{{event.location}}</p>
+                            <p class="is-desc-home">{{event.description}}</p>
+                            <small>Participants: <strong>{{event.total_participate}}</strong></small>
+                            <!-- <a href="" class="orange-btn sm-btn w-100 mt-2">Join</a> -->
+                        </a>
+                        <!-- <a href="" class="main-btn sm-btn w-100 mt-2" *ngIf="!event.reuest_status">Join</a> -->
+                        <div *ngIf="isLoggedIn;then logincontent else not_logincontent">here is ignored</div>
+                        <ng-template #logincontent>
+                            <button href="javascript:;" class="main-btn sm-btn w-100 mt-2 eventbox_joinbtn_{{event.id}}"
+                            *ngIf="event.user_id != isLoggedIn && !event.reuest_status" (click)="joinRequest(event.id)">Join</button>
+                        </ng-template>
+                        <ng-template #not_logincontent>
+                            <a href="signup" class="main-btn sm-btn w-100 mt-2" *ngIf="!event.reuest_status">Join</a>
+                        </ng-template>
+                        <a href="javascript:;" class="green-btn sm-btn w-100 mt-2" *ngIf="event.reuest_status == 'a'">Joined</a>
+                        <a href="javascript:;" class="orange-btn sm-btn w-100 mt-2" *ngIf="event.reuest_status == 'p'">Awaiting Response</a>
+                        <share-buttons  style="text-align: center; font-size: 13px !important;" [theme]="'outline'"
+                         [include]="['facebook','twitter','linkedin','sms','whatsapp','messenger','email','print','copy']"
+                        [show]="4"
+                         url="{{event.shareUrl}}"
+                         title="{{event.title}}"
+                         image="{{event.image}}"
+                         [autoSetMeta]="false"
+                        ></share-buttons>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" *ngIf="NewEventData.length > 9">
+                <a href="activity-type/upcoming-activities" class="main-btn sm-btn mt-2">See All</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="advertise-banner-sec" *ngIf="NewEventData.length">
+        <div class="container">
+            <figure>
+                <img src="{{this.secondBanner}}">
+            </figure>
+        </div>
+    </div>
+
+    <div class="activity-list-sec cf"  *ngIf="AllEventData.length">
+        
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between home-mobile-heading">
+                <h2>Activities</h2>
+                <div class="rgt-seeall ml-auto">
+                    <a href="/activities">See All</a>
+                </div>
+            </div>
+            <div class="row" >
+              
+                <div class="col-md-6 col-lg-4 d-md-flex align-items-stretch" *ngFor="let event of AllEventData;let i = index;">
+                    <div class="general-bx activity-bx cf">
+                        <a href="activity/{{event.event_slug}}">
+                            <div class="d-flex align-items-center activity-user-info">
+                                <figure>
+                                    <img src="{{event.profile_img}}">
+                                </figure>
+                                <h3>{{event.first_name}}</h3>
+                                <div class="rigt-dots dropdown ml-auto">
+                                        <a class="dropdown-toggle" type="button" id="editdelete" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="icon-dots-icon"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="editdelete">
+                                            <a class="dropdown-item" href="activity/{{event.event_slug}}">Report Activity</a>
+                                            <hr>
+                                            <a class="dropdown-item" href="activity/{{event.event_slug}}">Report User</a>
+                                        </div>
+                                    </div>
+                                <!-- <h3><a href="">{{event.first_name}}</a></h3> -->
+                            </div>
+                            <h4>{{event.title}}</h4>
+                            <figure>
+                                <div class="status-info accept-green" *ngIf="event.reuest_status == 'a'">Accepted</div>
+                                <div class="status-info pending-orange" *ngIf="event.reuest_status == 'p'">Pending</div>
+                                <!-- <div class="status-info pending-orange" *ngIf="event.reuest_status == 'null'">Pending</div> -->
+                                <img  [src]="event.image"  class="activity-img-class">
+                            </figure>
+                            <!-- <span class="date-txt">{{event.event_date | date}} {{event.event_time}}</span> -->
+                            <span class="date-txt">{{event.eventdatetime | date:'medium'}}</span>
+                            <p class="location-txt"><i class="icon-location-icon mr-1"></i>{{event.location}}</p>
+                            <p class="is-desc-home">{{event.description}}</p>
+                            <small>Participants: <strong>{{event.total_participate}}</strong></small>
+                        </a>
+
+                        <div *ngIf="isLoggedIn;then logincontent else not_logincontent">here is ignored</div>
+                        <ng-template #logincontent>
+                            <button href="javascript:;" class="main-btn sm-btn w-100 mt-2 eventbox_joinbtn_{{event.id}}"
+                            *ngIf="event.user_id != isLoggedIn && !event.reuest_status" (click)="joinRequest(event.id)">Join</button>
+                        </ng-template>
+                        <ng-template #not_logincontent>
+                            <a href="signup" class="main-btn sm-btn w-100 mt-2" *ngIf="!event.reuest_status">Join</a>
+                        </ng-template>
+
+                        <a href="javascript:;" class="green-btn sm-btn w-100 mt-2" *ngIf="event.reuest_status == 'a'">Joined</a>
+                        <a href="javascript:;" class="orange-btn sm-btn w-100 mt-2" *ngIf="event.reuest_status == 'p'">Awaiting Response</a>
+
+                        <share-buttons  style="text-align: center; font-size: 13px !important;" [theme]="'outline'"
+                         [include]="['facebook','twitter','linkedin','sms','whatsapp','messenger','email','print','copy']"
+                         [show]="4"
+                         url="{{event.shareUrl}}"
+                         title="{{event.title}}"
+                         image="{{event.image}}"
+                         [autoSetMeta]="false"
+                        ></share-buttons>
+
+                        <!-- <share-buttons theme="modern-light"
+                            [include]="['facebook','twitter','linkedin','whatsapp','copy','tumblr','mix','viber','vk','telegram','messenger','pinterest','xing','line','sms','email','print','reddit']"
+                            [show]="3"
+                            [showIcon]="true"
+                            [showText]="false"
+                            url="https://rodrigo.kamada.com.br/"
+                            description="{{event.title}}"
+                            twitterAccount="rodrigokamada"
+                            class="">
+                          </share-buttons> -->
+                    </div>
+                </div>
+              
+            </div>
+            <div class="text-center"  *ngIf="AllEventData.length > 9">
+                <a href="/activities" class="main-btn sm-btn mt-2" >See All</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-home-btn">
+        <a href="javascript::" (click)="postActivityBtn()" class="main-btn md-btn">POST</a>
+    </div>
+</div>
+<app-footer></app-footer>
+<app-footer-mobile></app-footer-mobile>

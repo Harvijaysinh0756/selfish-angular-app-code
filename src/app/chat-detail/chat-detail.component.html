@@ -1,0 +1,77 @@
+<app-header></app-header>
+<app-header-mobile></app-header-mobile>
+<div class="page-wrap chat-wrap">
+    <div class="chat-detail-sec cf">
+
+        <div class="container">
+           <div class="chat-dtl-outer cf" >
+                <div class="lft-chat-list"  *ngIf="ChatType=='e'">
+                    <ul>
+
+                        <li *ngFor="let user of AllListParticipate;let i = index;">
+                            <div class="d-flex align-items-center">
+                                <figure>
+                                    <img src="{{user.profile_img}}">
+                                </figure>
+                                <div class="chat-lft-msg">
+                                    <h3>{{user.first_name}} {{user.last_name}}</h3>
+                                    <!-- <p>Lorem Ipsum is simply</p> -->
+                                </div>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <div class="rgt-chat-info" [ngStyle]="{'width':ChatType == 'u' ? '100%' : ''}">
+                    <div class="chat-user-info d-flex align-items-center">
+                        <div class="d-flex align-items-center">
+                            <figure *ngIf="ChatType=='u'">
+                                <img src="{{profileimg}}">
+                            </figure>
+                            <div class="chat-lft-msg">
+                                <h3>{{title}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-show-scroll">
+                        <div class="chat-show-scroll" id="chatbox1" #chatbox #scrollMe></div>
+                    </div>
+                    
+                    <form  id='frmSend' [formGroup]="frmSend" name="frmSend" method="POST" (ngSubmit)="submitSend()" novalidate> 
+                        <div *ngIf="this.ChatPdfDoc" class="cf show-attached">
+                            <div class="attach-outer cf">
+                                <img class="chatselectImg" [src]="this.ChatPdfDoc ? this.ChatPdfDoc : ''">
+                                <span (click)="removeImg()" class="imageDeleteIcon">X</span>
+                            </div>
+                            <div class="pdfdocname">{{this.ChatPdfDocName}}</div>
+                        </div>
+                        <div class="send-msg-bx">
+                                <div class="form-group mb-0 position-relative cf">
+                                    <input type="text"  name="message" formControlName="message" class="is-form-control" placeholder="Enter Message">
+                                    <div class="attach-paper">
+                                        <input type="file" #fileInput id="attached" name="attached" formControlName="attached" (change)="onChange($event)">
+                                        <i class="icon-paperclip-icon"></i>
+                                    </div>
+                                    <div *ngIf="this.chatImgPreview">
+                                        <img class="chatselectImg" [src]="this.chatImgPreview ? this.chatImgPreview : ''">
+                                        <span (click)="removeImg()" class="imageDeleteIcon">X</span>
+                                    </div>
+                                    
+                                </div>
+                                <button type="submit" class="send-ico" [disabled]="isDisableBtn">
+                                    <i class="icon-paper-plane-icon"></i>
+                                     <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                </button>
+                        </div>
+                        
+                    </form>
+                    
+                </div>
+           </div>
+        </div>
+
+      
+    </div>
+</div>
+
+<app-footer></app-footer>

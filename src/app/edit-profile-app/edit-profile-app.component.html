@@ -1,0 +1,65 @@
+<app-header></app-header>
+<app-header-mobile></app-header-mobile>
+<div class="page-wrap">
+    <div class="edit-pro-sec cf">
+        <form id='frmProfileEdit' [formGroup]="frmProfileEdit" name="frmProfileEdit" method="POST" (ngSubmit)="submitProfileEdit()" novalidate>
+            <div class="form-group cf">
+                <div class="myprofile-pic cf">
+                    <div class="change-pic">
+                        <input type="file" id="profile_img"  (change)="onChange($event)">
+                        <i class="fa fa-camera"></i>
+                    </div>
+                    <figure>
+                        <img [src]="this.profileImg ? this.profileImg : 'assets/images-nct/profile-pic.jpg'">
+                    </figure>
+                </div>
+                <div style="text-align:center;"><small>Better Result please upload Square image like : 200*200</small></div>
+            </div>
+            <hr>
+            <div class="col-md-12 form-group cf">
+                <input type="text" id="first_name" formControlName="first_name" name="first_name" placeholder="Enter First Name*" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }">
+                <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                  <div *ngIf="f.first_name.errors.required" class="text-left">Enter First Name</div>
+                </div>
+            </div>
+            <div class="col-md-12 form-group cf">
+                <input type="text" id="last_name" formControlName="last_name" name="last_name" placeholder="Enter Last Name*" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }">
+                <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                  <div *ngIf="f.last_name.errors.required" class="text-left">Enter Last Name</div>
+                </div>
+            </div>
+            <div class="col-md-12 form-group cf">
+                <input type="text" id="email" name="email" formControlName="email" placeholder="Enter Email ID" class="is-form-control" readonly>
+            </div>
+            <!-- <div class="col-md-12 form-group c">
+                <input type="text" formControlName="mobile" id="mobile" name="mobile" placeholder="Enter Contact Number*" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" value="{{this.userProfile.mobile}}">
+                <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                      <div class="text-danger text-left" *ngIf="f.mobile.errors.required">
+                          Please enter contact number   
+                      </div>
+                      <div class="text-danger text-left" *ngIf="f.mobile.errors.onlyNumeric">
+                          Please enter valid contact number 
+                      </div>
+                      <div class="text-danger text-left" *ngIf="f.mobile.errors.minlength">
+                          Contact number must be atleast 10 characters  
+                      </div>
+                      <div class="text-danger text-left" *ngIf="f.mobile.errors.maxlength">
+                          Contact number must not exceed 15 characters  
+                      </div>
+                </div>
+            </div> -->
+            <div class="col-md-12 form-group cf">
+                <textarea rows="5" id="about" name="about" formControlName="about" class="is-form-control" placeholder="Enter Tell about...*"></textarea>
+            </div>
+            <div class="col-md-12 form-group cf">
+                <button type="submit" class="main-btn md-btn mb-2 w-100">Update</button>
+            </div>
+            <div class="col-md-12 form-group cf">
+                <a href="/myprofile" class="outer-main-btn md-btn w-100">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<app-footer></app-footer>
+<app-footer-mobile></app-footer-mobile>

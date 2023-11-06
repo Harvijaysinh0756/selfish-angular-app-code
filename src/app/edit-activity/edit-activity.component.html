@@ -1,0 +1,119 @@
+<app-header></app-header>
+<app-header-mobile></app-header-mobile>
+<div class="page-wrap">
+    <div class="inner-bg-sec cf" style="background-image: url(assets/images-nct/inner-heading-bg.jpg);">
+        <h1>Add Activity</h1>
+    </div>
+    <div class="login-signup-sec cf">
+        <div class="signup-outer cf">
+            <form id='frmPostEvent' [formGroup]="frmPostEvent" name="frmPostEvent" method="POST" (ngSubmit)="submitProfileEdit()" novalidate>
+                <div class="form-group cf">
+
+                    <ng-select [items]="categoryList"
+                    ng-class="form-control-inner"
+                    [multiple]="true"
+           bindLabel="name"
+           bindValue="id"
+           formControlName="category_id" 
+           placeholder="Activity Type*"
+           [searchable]="true"
+           [(ngModel)]="selectedActivityType"
+           >
+</ng-select>
+
+                    <!-- <ng-select 
+                        ng-class="form-control-inner" 
+                        [multiple]="true"
+                        formControlName="category_id" 
+                        id="category_id"
+                        placeholder="Activity Type*" 
+                        [searchable]="true"
+                        [(ngModel)]="selectedActivityType"
+                        [ngClass]="{ 'is-invalid': submitted && f.category_id.errors }"
+                        >
+                        <ng-option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</ng-option>
+                    </ng-select> -->
+                    <div *ngIf="submitted && f.category_id.errors" class="invalid-feedback">
+                      <div *ngIf="f.category_id.errors.required" class="text-left">Select Category</div>
+                    </div>
+                </div>
+                <div class="form-group cf">
+                    <!-- <input type="text" id="email" name="email" placeholder="Enter Activity Title" class="is-form-control"> -->
+                    <input type="text" id="title" formControlName="title" name="title" placeholder="Enter Activity Title*" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                    <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                      <div *ngIf="f.title.errors.required" class="text-left">Enter Title Name</div>
+                    </div>
+
+                </div>
+                <div class="form-group cf">
+                    <input type="text" id="location" formControlName="location" name="location" placeholder="Enter location*" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.location.errors }">
+                    <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                      <div *ngIf="f.location.errors.required" class="text-left">Enter Location Name</div>
+                    </div>
+                    <div class="show-hide-pass">
+                        <i class="icon-location-icon"></i>
+                    </div>
+                </div>
+                <div class="form-group cf">
+                   <input matInput [matDatepicker]="picker" placeholder="Date*" [min]="minDate"  name="event_date" formControlName="event_date" [ngClass]="{ 'is-invalid': submitted && f.event_date.errors }" class="is-form-control" (dateChange)="handleDOBChange($event)">
+                   <div *ngIf="submitted && f.event_date.errors" class="invalid-feedback">
+                      <div *ngIf="f.event_date.errors.required" class="text-left">Select Activity Date</div>
+                    </div>
+                    <div class="show-hide-pass pickerdatetimebox" >
+                        <!-- <i class="icon-calendar-r"></i> -->
+                        <mat-datepicker #picker ><i class="icon-calendar-r"></i></mat-datepicker>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    </div>
+                </div>
+                
+                <div class="form-group cf">
+
+  
+                    <input type="time" id="eventTime"  name="eventTime"  matInput name="event_time" formControlName="event_time" min="09:00" max="18:00" placeholder="Enter Activity Time*" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.event_time.errors }" class="is-form-control">
+                    <div *ngIf="submitted && f.event_time.errors" class="invalid-feedback">
+                      <div *ngIf="f.event_time.errors.required" class="text-left">Select Activity Time</div>
+                    </div>
+                    <!-- <div class="show-hide-pass">
+                        <i class="icon-clock-icon"></i>
+                    </div> -->
+                </div>
+                <div class="form-group cf">
+                    <textarea class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" formControlName="description" id="description" name="description" rows="5" placeholder="Tell us what you would like to experience.*"></textarea>
+                    <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                      <div *ngIf="f.description.errors.required" class="text-left">Enter Description</div>
+                    </div>
+                </div>
+
+                <div class="form-group cf">
+                    <div class="is-form-control is-my-upload" [ngClass]="{ 'is-invalid': submitted && f.image.errors }">
+                        <span id="upload-attachment">Upload a cool image, gif or video to represent your activity.*</span>
+                        <i class="icon-upload-icon"></i>
+                        <input type="file" id="image" name="image" formControlName="image" class="is-form-control" (change)="onChange($event)"  size="40" onchange="$(&quot;#upload-attachment&quot;).html($(this).val());">
+                    </div>
+                    <!-- <div *ngIf="submitted && f.image.errors" class="invalid-feedback">
+                      <div *ngIf="f.image.errors.required" class="text-left">Image / gif / video is required</div>
+                    </div> -->
+                    <div style="text-align:center;"><small>Better Result please upload image like size 600*370</small></div>
+                    <img src="{{this.imagepath}}" style="width:100px;">
+                </div>
+
+                <!-- <div class="form-group cf">
+                    <input type="file" id="image" name="image" formControlName="image" class="is-form-control" (change)="onChange($event)" [ngClass]="{ 'is-invalid': submitted && f.image.errors }">
+                    <div class="show-hide-pass">
+                        <i class="icon-upload-icon"></i>
+                    </div>
+
+                    <div *ngIf="submitted && f.image.errors" class="invalid-feedback">
+                      <div *ngIf="f.image.errors.required" class="text-left">Image is required</div>
+                    </div>
+
+                </div> -->
+                <div class="form-group cf">
+                    <button type="submit" class="main-btn md-btn w-100">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+<app-footer-mobile></app-footer-mobile>

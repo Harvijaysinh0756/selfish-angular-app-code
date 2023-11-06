@@ -1,0 +1,43 @@
+<app-header></app-header>
+<app-header-mobile></app-header-mobile>
+<div class="page-wrap chat-wrap">
+    <div class="chat-detail-sec cf">
+        <div class="container">
+
+
+           <div class="chat-dtl-outer cf">                
+                <div class="rgt-chat-info" style="    width: 100%;">
+                    <div class="chat-user-info d-flex align-items-center">
+                        <div class="d-flex align-items-center">
+                            <figure *ngIf="ChatType == 'u'">
+                                <img src="assets/images-nct/list-pic-img1.jpg">
+                            </figure>
+                            <div class="chat-lft-msg">
+                                <h3>{{title}}</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-show-scroll" id="chatbox1" #chatbox #scrollMe></div>
+                    
+                    <form  id='frmSend' [formGroup]="frmSend" name="frmSend" method="POST" (ngSubmit)="submitSend()" novalidate> 
+	                    <div class="send-msg-bx">
+		                        <div class="form-group mb-0 position-relative cf">
+		                            <input type="text"  name="message" formControlName="message" class="is-form-control" placeholder="Enter Message">
+		                            <div class="attach-paper">
+		                                <input type="file" id="attached" name="attached" formControlName="attached" (change)="onChange($event)">
+		                                <i class="icon-paperclip-icon"></i>
+		                            </div>
+		                        </div>
+		                        <button type="submit" class="send-ico">
+		                            <i class="icon-paper-plane-icon"></i>
+		                        </button>
+	                    </div>
+	                </form>
+                </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

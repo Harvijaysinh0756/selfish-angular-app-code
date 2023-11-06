@@ -1,0 +1,46 @@
+<app-header></app-header>
+<app-header-mobile></app-header-mobile>
+<div class="page-wrap">
+    
+
+    <div class="activity-list-sec cf">
+        
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between home-mobile-heading">
+                <h2></h2>
+                <div class="rgt-seeall ml-auto">
+                    <a href="javascript:;"></a>
+                </div>
+            </div>
+            <div class="row" >
+              
+                <div class="col-md-6 col-lg-4 d-md-flex align-items-stretch" *ngFor="let event of AllEventData;let i = index;">
+                    <div class="general-bx activity-bx cf">
+                        <div class="d-flex align-items-center activity-user-info">
+                            <figure>
+                                <img src="{{event.profile_img}}">
+                            </figure>
+                            <h3><a href="">{{event.first_name}} <!-- {{imagepath}} --> </a></h3>
+                        </div>
+                        <h4>{{event.title}}</h4>
+                        <figure>
+                            <img  [src]="event.image" >
+                        </figure>
+                        <span class="date-txt">{{event.event_date | date}} {{event.event_time}}</span>
+                        <p class="location-txt"><i class="icon-location-icon mr-1"></i>{{event.location}}</p>
+                        <small>Participants: <strong>100</strong></small>
+                        <a href="" class="main-btn sm-btn w-100 mt-2">Join</a>
+                    </div>
+                </div>
+              
+            </div>
+            <div class="text-center">
+                <a href="javascript:;" class="main-btn sm-btn mt-2" (click)="getLoadMore()" *ngIf="isLoadMoreShowHide == 'show'">See More</a>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+<app-footer></app-footer>
+<app-footer-mobile></app-footer-mobile>

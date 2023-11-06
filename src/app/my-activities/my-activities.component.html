@@ -1,0 +1,115 @@
+<app-header></app-header>
+<app-header-mobile></app-header-mobile>
+<div class="page-wrap">
+    <div class="inner-bg-sec cf" style="background-image: url(assets/images-nct/inner-heading-bg.jpg);">
+        <h1>My Activities</h1>
+    </div>
+    <div class="myactivities-sec cf">
+        <div class="container">
+            <div class="common-tabs-outer cf">
+                <ul class="nav nav-pills justify-content-center" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link active" (click)="getTabData('myactivity')" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">My Posted Activities</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link" (click)="getTabData('joinactivity')" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">My Friend Activities</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <div class="add-rgt-btn" *ngIf="isAddActivityBtn">
+                        <a href="/add-activity" class="main-btn md-btn">Add Activity</a>
+                    </div>
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="activity-list-sec">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4 d-md-flex align-items-stretch eventbox_{{event.id}}" *ngFor="let event of AllEventData;let i = index;">
+                                    <div class="general-bx activity-bx cf">
+                                        <a href="activity/{{event.event_slug}}">
+                                            <div class="d-flex align-items-center activity-user-info">
+                                                <figure>
+                                                    <img src="{{event.profile_img}}">
+                                                </figure>
+                                                <h3><a href="">{{event.first_name}}</a></h3>
+                                                <div class="rigt-dots dropdown ml-auto">
+                                                    <a class="dropdown-toggle" type="button" id="editdelete" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="icon-dots-icon"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left" aria-labelledby="editdelete">
+                                                        <a class="dropdown-item" href="/update-activity/{{event.event_slug}}">Edit</a>
+                                                        <hr>
+                                                        <a class="dropdown-item" (click)="deleteEvent(event.id)" href="javascript:;">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4>{{event.title}}</h4>
+                                            <figure>
+                                                <img [src]="event.image" class="activity-img-class">
+                                            </figure>
+                                            <!-- <span class="date-txt">{{event.event_date | date}} {{event.event_time}}</span> -->
+                                            <span class="date-txt">{{event.eventdatetime | date:'medium'}}</span>
+                                            <p class="location-txt"><i class="icon-location-icon mr-1"></i>{{event.location}}</p>
+                                            <small>Participants: <strong>{{event.total_participate}}</strong></small>
+                                        </a>
+                                        <a [routerLink]="['/list-requests', event.id]"  class="main-btn sm-btn w-100 mt-2">List of Requests</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-4 d-md-flex align-items-stretch">
+                                    <div *ngIf="notfound" class="alert alert-info w-100">Record not found</div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a href="javascript:;" class="main-btn sm-btn mt-2" (click)="getLoadMore()" *ngIf="isLoadMoreShowHide == 'show'">See More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="activity-list-sec">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4 d-md-flex align-items-stretch" *ngFor="let event of MyjoiningEvent;let i = index;">
+                                    <div class="general-bx activity-bx cf">
+                                        <a href="activity/{{event.event_slug}}">
+                                            <div class="d-flex align-items-center activity-user-info">
+                                                <figure>
+                                                    <img src="{{event.profile_img}}">
+                                                </figure>
+                                                <h3><a href="">{{event.first_name}}</a></h3>
+                                                
+                                            </div>
+                                            <h4>{{event.title}}</h4>
+                                            <figure>
+                                                <div class="status-info accept-green" *ngIf="event.reuest_status == 'a'">Accepted</div>
+                                                <div class="status-info pending-orange" *ngIf="event.reuest_status == 'p'">Pending</div>
+                                                <img [src]="event.image">
+                                            </figure>
+                                            <div class="d-flex justify-content-center">
+                                                <!-- <span class="date-txt">{{event.event_date | date}} {{event.event_time}}</span> -->
+                                                <span class="date-txt">{{event.eventdatetime | date:'medium'}}</span>
+                                                <div class="chat-rgt-ico ml-auto">
+                                                    <!-- <a href="{{event.chatDetail}}"> -->
+                                                    <a href="javascript:;" (click)="chatDetail(event.id,event.user_id)">
+                                                        <i class="icon-chat-dots-icon"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <p class="location-txt"><i class="icon-location-icon mr-1"></i>{{event.location}}</p>
+                                            <small>Participants: <strong>{{event.total_participate}}</strong></small>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-4 d-md-flex align-items-stretch">
+                                    <div *ngIf="notMyjoiningfound" class="alert alert-info w-100">Record not found</div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a href="javascript:;" class="main-btn sm-btn mt-2" (click)="getLoadMyJoinintMore()" *ngIf="isLoadMoreShowHide == 'show'">See More</a>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
+<app-footer-mobile></app-footer-mobile>

@@ -1,0 +1,70 @@
+<app-header></app-header>
+<div class="page-wrap">
+    <div class="login-signup-sec cf">
+        <div class="signup-outer cf">
+            <h1>Login</h1>
+            <p>"Building friendships and relationships through activities."</p>
+
+            <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="email">Username</label>
+                    <input type="text" formControlName="email" class="form-control" ngModel email="true" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary">Login</button>
+                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                    <a [routerLink]="['/register']" class="btn btn-link">Register</a>
+                </div>
+            </form> -->
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                
+                <div class="form-group cf">
+                    <input type="text" formControlName="email" id="email" name="email" placeholder="Enter Email ID*" class="is-form-control"  email="true" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" oninput="this.value = this.value.toLowerCase()">
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required" class="text-danger text-left">Email is required</div>
+                        <!-- <div *ngIf="f.email.errors.email" class="text-danger text-left">Email must be a valid email address</div> -->
+                        <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="text-danger text-left">Email must be a valid email address</div>
+                    </div>
+                </div>
+                <div class="form-group cf">
+                    <input [type]="showPassword ? 'text' : 'password'" formControlName="password" id="pass" name="password" placeholder="Enter Password*" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                    <span (click)="togglePasswordVisibility()" class="eyepassword">
+                      <i class="fa fa-eye" aria-hidden="true" *ngIf="!show"></i>
+                      <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="show"></i>
+                    </span>
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required" class="text-danger text-left">Password is required</div>
+                    </div>
+                </div>
+                <div class="form-group d-flex justify-content-center cf">
+                    <div class="flat-checkbox">
+                        <input type="checkbox" id="rememberme" formControlName="remember" name="remember" [checked]="rememberMe">
+                        <label for="rememberme">Remember me </label>
+                    </div>
+                    <span class="forgot-link ml-auto"><a href="/forgot-password">Forgot Password?</a></span>
+                </div>
+                <div class="form-group cf">
+                    <button type="submit" class="main-btn md-btn w-100" [disabled]="loading">Log In</button>
+                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                </div>
+                <div class="form-group cf">
+                    <span class="no-login"><a href="/home" >Home</a></span><br>
+                </div>
+                <hr>
+                <span class="no-login">Don’t have an account?  <a href="/signup" >Sign up</a></span>
+            </form>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,80 @@
+<app-header></app-header>
+<app-header-mobile></app-header-mobile>
+<div class="page-wrap">
+    <div class="inner-bg-sec cf" style="background-image: url(assets/images-nct/inner-heading-bg.jpg);">
+        <h1>Account Settings</h1>
+    </div>
+    <div class="login-signup-sec cf">
+        <div class="signup-outer cf">
+            <h3>Change Password</h3>
+            <form id='frmChangePass' [formGroup]="frmChangePass" name="frmChangePass" method="POST" (ngSubmit)="submitChangePass()" novalidate>
+                <div class="form-group cf">
+                    <input [type]="showPassword ? 'text' : 'password'" id="pass" name="current_password"  formControlName="current_password" placeholder="Enter Current Password" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.current_password.errors }">
+                    <span (click)="togglePasswordVisibility()" class="eyepassword">
+                      <i class="fa fa-eye" aria-hidden="true" *ngIf="!show"></i>
+                      <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="show"></i>
+                    </span>
+                    <div *ngIf="submitted && f.current_password.errors" class="invalid-feedback">
+                      <div class="text-danger text-left" *ngIf="f.current_password.errors.required">
+                          Please enter current password 
+                      </div>
+                      <div class="text-danger text-left" *ngIf="f.current_password.errors.minlength">
+                          Password must be atleast of 6 character   
+                      </div>
+                    </div>
+                </div>
+                <div class="form-group cf">
+                    
+                    <input [type]="showPasswordc ? 'text' : 'password'" id="pass" name="new_password"  formControlName="new_password" placeholder="Enter New Password" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.new_password.errors }">
+                    <span (click)="togglePasswordVisibilityConfirm()" class="eyepassword">
+                      <i class="fa fa-eye" aria-hidden="true" *ngIf="!showc"></i>
+                      <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="showc"></i>
+                    </span>
+                    <div *ngIf="submitted && f.new_password.errors" class="invalid-feedback">
+                      <div class="text-danger text-left" *ngIf="f.new_password.errors.required">
+                          Please enter new password 
+                      </div>
+                      <div class="text-danger text-left" *ngIf="f.new_password.errors.minlength">
+                          password must be atleast of 6 character   
+                      </div>
+                    </div>
+
+                </div>
+                <div class="form-group cf">
+                    <input [type]="showPassworda ? 'text' : 'password'" id="pass" name="password_confirmation"  formControlName="password_confirmation" placeholder="Confirm Password" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.password_confirmation.errors }">
+
+                    <span (click)="togglePasswordVisibilityConfirmnew()" class="eyepassword">
+                      <i class="fa fa-eye" aria-hidden="true" *ngIf="!showa"></i>
+                      <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="showa"></i>
+                    </span>
+
+                    <div *ngIf="submitted && f.password_confirmation.errors" class="invalid-feedback">
+                      <div class="text-danger text-left" *ngIf="f.password_confirmation.errors.required">
+                          Please enter confirm password 
+                      </div>
+                      <div class="text-danger text-left" *ngIf="f.password_confirmation.errors.confirmedValidator">
+                        Password and confirm password must match    
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 form-group cf">
+                        <button type="submit" class="main-btn md-btn w-100">Change Password</button>
+                    </div>
+                    <div class="col-md-6 form-group cf">
+                        <a href="javascript:;" (click)="goBack()" class="outer-main-btn md-btn w-100">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="login-signup-sec cf">
+        <div class="signup-outer cf">
+            <h3>Delete Account</h3>
+            <button class="main-btn md-btn w-100" (click)="deleteAccount()">Delete</button>
+        </div>            
+    </div>
+</div>
+<app-footer></app-footer>
+<app-footer-mobile></app-footer-mobile>

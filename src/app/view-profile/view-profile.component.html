@@ -1,0 +1,44 @@
+<app-header></app-header>
+<app-header-mobile></app-header-mobile>
+<div class="page-wrap">
+    <div class="inner-bg-sec cf" style="background-image: url(assets/images-nct/inner-heading-bg.jpg);">
+        <h1>User Profile</h1>
+    </div>
+    <div class="profile-sec cf">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-lg-2">
+                    <div class="myprofile-pic cf">
+                        <figure>
+                            <img [src]="this.profileImg ? this.profileImg : 'assets/images-nct/profile-pic.jpg'" >
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-md-9 col-lg-10">
+                    <div class="my-profile-outer cf">
+
+                        <h2>{{this.userProfile.first_name}}</h2>
+                        <div class="chat-ico" *ngIf="isChatIconDisplay">
+                            <a href="javascript:;" (click)="chatDetail()">
+                                <i class="icon-chat-dots-icon"></i>
+                            </a>
+                        </div>
+                        <!-- <p><i class="icon-email-icon"></i>{{this.userProfile.email}}</p>
+                        <p><i class="icon-phone-icon"></i>+1 {{this.userProfile.mobile}}</p> -->
+                    </div>
+                </div>
+            </div>
+            <div class="profile-desc">
+                <h3>Your greatest superpower.</h3>
+                <p>{{this.userProfile.about}}</p>
+            </div>
+
+
+                
+
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
+<app-footer-mobile></app-footer-mobile>

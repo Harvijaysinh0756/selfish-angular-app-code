@@ -1,0 +1,35 @@
+<div class="page-wrap">
+    <div class="is-profile-menu-sec cf">
+        <div class="profile-top-outer">
+            <div class="d-flex align-items-center">
+                <figure>
+                    <img src="{{this.stringifiedData.data.profile_img}}">
+                </figure>
+                <div class="my-profile-outer">
+                    <h3>{{this.stringifiedData.data.user_name}}</h3>
+                    <a href="/edit-profile-app">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+        <div class="menu-list">
+            <ul class="main-menu">
+                <li><a href="/myprofile"><i><img src="assets/images-nct/user-ico.svg"></i>My Profile</a></li>
+                <li><a href="/my-upcoming-activities"><i><img src="assets/images-nct/calendar-ico.svg"></i>My Upcoming Activities</a></li>
+                <li><a href="/my-activities"><i><img src="assets/images-nct/past-ico.svg"></i>My Activities</a></li>
+                <li><a href="/account-settings"><i><img src="assets/images-nct/setting-ico.svg"></i>My Account Settings</a></li>
+                <li><a href="/my-inbox"><i  class="icon-email-icon"></i>My Inbox</a></li>
+                <li><a href="" (click)="logoutUser()"><i><img src="assets/images-nct/logout-ico.svg"></i>Logout</a></li>
+            </ul>
+            <ul class="general-menu">
+                <li *ngFor="let cms of cmspagesList;let i = index;"><a href="cms/{{cms.page_name}}">{{cms.page_title}}</a></li>
+                
+                <!-- <li><a href="">About Selfwish</a></li>
+                <li><a href="">Selfwish Privacy Policy</a></li>
+                <li><a href="">Selfwish Terms and Conditions</a></li>
+                <li><a href="">Contact Selfwish</a></li> -->
+            </ul>
+            <p>Version 4.61.3</p>
+        </div>
+    </div>
+</div>
+<app-footer-mobile></app-footer-mobile>

@@ -1,0 +1,55 @@
+<header>
+    <nav class="navbar navbar-expand-lg head-nav">
+        <div class="container-fluid">
+        <a class="navbar-brand logo" href="#">
+          <img src="assets/images-nct/logo.png" alt="Selfwish">
+        </a>
+        <button class="navbar-toggler hamburger-menu" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto align-items-center">
+            <!-- <li class="nav-item active">
+              <a class="nav-link" href="">{{deviceInfo.deviceType}}</a>
+            </li> -->
+            
+            <li class="nav-item active">
+              <a class="nav-link" href="">Home</a>
+            </li>
+            <li class="nav-item" *ngIf="!isLoggedIn">
+              <a class="main-btn md-btn" href="/signup">Sign Up</a>
+            </li>
+            <li class="nav-item ml-3" *ngIf="!isLoggedIn">
+                <a class="outer-main-btn md-btn" href="/login">Login</a>
+            </li>
+            <li class="nav-item ml-3" *ngIf="isLoggedIn">
+              <div class="user-header cf">
+                  <a href="" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <figure>
+                      <img id="imageprofileheader" src="{{this.userProfileimg}}" style="width:45px;">
+                    </figure>
+                    <small>{{this.stringifiedData.data.user_name}} </small>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/myprofile">My Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/my-upcoming-activities">My Upcoming Activities</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/my-activities">My Activities</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/account-settings">My Account Settings</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/my-inbox">My Inbox</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item123" (click)="logoutUser()">Logout</a>
+                  </div>
+              </div>
+          </li>
+          </ul>
+        </div>
+        </div>
+    </nav>
+</header>

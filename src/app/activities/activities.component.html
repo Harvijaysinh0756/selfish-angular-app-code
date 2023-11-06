@@ -1,0 +1,212 @@
+<app-header></app-header>
+<app-header-mobile></app-header-mobile>
+<div class="page-wrap">
+    <div class="inner-bg-sec cf" style="background-image: url(assets/images-nct/inner-heading-bg.jpg);">
+        <h1>Activities</h1>
+    </div>
+    <div class="serch-outer-activites cf">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-lg-8">
+                    <div class="home-serch collapse" id="collapsefilter">
+                        <form class="d-md-flex align-items-center justify-content-center" id='frmSearchFilter' [formGroup]="frmSearchFilter" name="frmSearchFilter" method="POST" (ngSubmit)="submitSearchFilter()" novalidate>
+                            <div class="form-keyword">
+                                <input type="text" formControlName="keyword" name="keyword" placeholder="Enter keyword(s) to find activities" class="is-form-control">
+                                <i class="is-srch-ico"><img src="assets/images-nct/search-ico.png"></i>
+                            </div>
+                            <div class="form-locate">
+                                <input type="text" formControlName="location" name="location" placeholder="Enter location*" class="is-form-control">
+                                <i class="icon-location-icon"></i>
+                            </div>
+                            <!-- <div class="input-group mb-3">
+                                <input type="text" class="form-control is-form-control" id="inlineFormInputGroup" placeholder="Nearby">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="icon-gps-icon"></i></div>
+                                </div>
+                            </div> -->
+
+                            <div class="input-group">
+                                        
+                                <div class="form-group form-locate cf">
+                                    <ng-select 
+                                        ng-class="form-control-inner" 
+                                        [multiple]="true"
+                                        formControlName="category_id" 
+                                        id="category_id"
+                                        placeholder="Activity Type*" 
+                                        [searchable]="true"
+                                        (change)="changeevent()"
+                                        >
+                                        <ng-option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</ng-option>
+                                    </ng-select>
+                                </div>
+
+                            </div>
+
+                            <div class="form-locate mb-3 input-group">
+                                <select class="is-form-control" formControlName="typeofactivity">
+                                    <option value="">Activity</option>
+                                    <option value="hot-activities">Hot Activity</option>
+                                    <option value="upcoming-activities">Upcoming Activity</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group mb-3">
+
+                                <input matInput [matDatepicker]="picker" placeholder="Date" formControlName="eventDt" name="eventDt" class="form-control is-form-control" (dateChange)="handleDOBChange($event)">
+                                <div class="input-group-prepend">
+                                    <mat-datepicker #picker class="input-group-text"></mat-datepicker>
+                                </div>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+
+                                <!-- <input type="text" class="form-control is-form-control" id="inlineFormInputGroup" placeholder="Select Date">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="icon-calendar-icon"></i></div>
+                                </div> -->
+                            </div>
+                            <div class="form-search-btn">
+                                <!-- <button type="submit" id="activtysubmit" name="activtysubmit" class="main-btn sm-btn d-none d-md-block">Search</button> -->
+                                <button type="submit" id="activtysubmit" name="activtysubmit" class="main-btn sm-btn">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-4">
+                    <div class="filter-by cf">
+                        <div class="dropdown cf" (clickOutside)="clickedOutside()">
+                            <a href="javascript:;" (click)="toggleMenu()" class="nav-link dropdown-toggle" id="filter-toogle" data-toggle="dropdown1" aria-haspopup="true" aria-expanded="false">Filter By</a>
+                            <div class="dropdown-menu dropdown-menu-right {{isMenuOpened}}" aria-labelledby="filter-toogle" >
+                                <form id='frmSearchFilter' [formGroup]="frmSearchFilter" name="frmSearchFilter" method="POST" (ngSubmit)="submitSearchFilter()">
+                                    <!-- <div class="input-group mb-3">
+                                        <input type="text" class="form-control is-form-control" id="inlineFormInputGroup" placeholder="Nearby">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="icon-gps-icon"></i></div>
+                                        </div>
+                                    </div> -->
+
+                                    <div class="">
+                                        
+                                        <div class="form-group cf mb-0">
+                                            <ng-select 
+                                                ng-class="form-control-inner" 
+                                                [multiple]="true"
+                                                formControlName="category_id" 
+                                                id="category_id"
+                                                placeholder="Activity Type*" 
+                                                [searchable]="true"
+                                                (change)="changeevent()"
+                                                >
+                                                <ng-option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</ng-option>
+                                            </ng-select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <select class="is-form-control" formControlName="typeofactivity">
+                                            <option value="">Activity</option>
+                                            <option value="hot-activities">Hot Activity</option>
+                                            <option value="upcoming-activities">Upcoming Activity</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+
+                                        <input matInput [matDatepicker]="pickerweb" placeholder="Date" formControlName="eventDt" name="eventDt" class="form-control is-form-control" (dateChange)="handleDOBChange($event)">
+                                        <div class="input-group-prepend">
+                                            <mat-datepicker #pickerweb class="input-group-text"></mat-datepicker>
+                                        </div>
+                                        <mat-datepicker-toggle matIconSuffix [for]="pickerweb"></mat-datepicker-toggle>
+
+                                        <!-- <input type="text" class="form-control is-form-control" id="inlineFormInputGroup" placeholder="Select Date">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="icon-calendar-icon"></i></div>
+                                        </div> -->
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <button type="submit" class="main-btn md-btn w-100">Apply Filter</button>
+                                    </div>
+                                </form>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+        </div>
+    </div>
+    <div class="activity-list-sec cf">
+        <div class="container">
+            <div class="row">
+                
+                <div [ngClass]="{'col-md-12 col-lg-12  is-loop-adv dis-content': (i+1)%6 == 0, 'col-md-6 col-lg-4  is-loop-adv' : (i+1)%6 != 0 }"  *ngFor="let event of AllEventData;  let i = index;" >
+                    
+                    <div class="col-md-12 col-lg-12 d-md-flex" [ngClass]="{'col-md-4 col-lg-4 d-md-flex': (i+1)%6 == 0, 'col-md-12 col-lg-12 d-md-flex' : (i+1)%6 != 0 }" >
+                        
+
+                        <div class="general-bx activity-bx cf">
+                            <a href="activity/{{event.event_slug}}">
+                                <div class="d-flex align-items-center activity-user-info">
+                                    <figure>
+                                        
+                                        <img src="{{event.profile_img}}">
+                                    </figure>
+                                    <!-- <h3><a href="">{{event.first_name}} </a></h3> -->
+                                    <h3>{{event.first_name}}</h3>
+                                </div>
+                                <h4>{{event.title}}</h4>
+                                <figure>
+                                    <!-- <div class="status-info accept-green">Accepted</div> -->
+                                    <div class="status-info accept-green" *ngIf="event.reuest_status == 'a'">Accepted</div>
+                                    <div class="status-info pending-orange" *ngIf="event.reuest_status == 'p'">Pending</div>
+                                    <img [src]="event.image" class="activity-img-class">
+                                </figure>
+                                <!-- <span class="date-txt">{{event.event_date | date}} {{event.event_time}}</span> -->
+                                <span class="date-txt">{{event.eventdatetime | date:'medium'}}</span>
+                                <p class="location-txt"><i class="icon-location-icon mr-1"></i>{{event.location}}</p>
+                                <small>Participants: <strong>{{event.total_participate}}</strong></small>
+                                <!-- <a href="" class="green-btn sm-btn w-100 mt-2">Joined</a> -->
+                            </a>
+                            <button  href="javascript:;" class="main-btn sm-btn w-100 mt-2 eventbox_joinbtn_{{event.id}}" 
+                            *ngIf="event.user_id != isLoggedIn && !event.reuest_status"  (click)="joinRequest(event.id)"
+                            >Join</button>
+                            <a href="javascript:;" class="green-btn sm-btn w-100 mt-2" *ngIf="event.reuest_status == 'a'">Joined</a>
+                            <a href="javascript:;" class="orange-btn sm-btn w-100 mt-2" *ngIf="event.reuest_status == 'p'">Awaiting Response</a>
+                            <share-buttons  style="text-align: center; font-size: 4px !important;" [theme]="'outline'"
+                             [include]="['facebook','twitter','linkedin','sms','whatsapp','messenger','email','print','copy']"
+                             [show]="4"
+                             url="{{event.shareUrl}}"
+                             title="{{event.title}}"
+                             image="{{event.image}}"
+                             [autoSetMeta]="false"
+                            ></share-buttons>
+                        </div>
+
+                        
+
+                    </div>
+
+                    <div class="advertise-banner-sec" *ngIf=" (i+1)%6 == 0 " >
+                        <div class="container">
+                            <figure>
+                                <img src="assets/images-nct/adv-banner-2.jpg">
+                            </figure>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 col-lg-4 d-md-flex align-items-stretch">
+                    <div *ngIf="notfound" class="alert alert-info w-100">Record not found</div>
+                </div>
+                
+            </div>
+            <div class="text-center">
+                <a href="javascript:;" class="main-btn sm-btn mt-2" (click)="getLoadMore()" *ngIf="isLoadMoreShowHide == 'show'">See More</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<app-footer></app-footer>
+<app-footer-mobile></app-footer-mobile>

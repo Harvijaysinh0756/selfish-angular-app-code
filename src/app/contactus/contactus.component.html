@@ -1,0 +1,96 @@
+<app-header></app-header>
+<app-header-mobile></app-header-mobile>
+<div class="page-wrap">
+	<div class="inner-bg-sec cf" style="background-image: url(assets/images-nct/inner-heading-bg.jpg);">
+        <h1>Contact Us</h1>
+    </div>
+    
+    <div class="myactivities-sec cf">
+        <div class="container">
+
+        	
+
+            <div class="login-signup-sec cf">
+                <div class="signup-outer cf">
+                    <!-- <h3 class="text-center">Contact Us</h3> -->
+                    <form id='frmContactus' [formGroup]="frmContactus" name="frmContactus" method="POST" (ngSubmit)="submitContactUsForm()" novalidate>
+                        
+                        <div class="row cf">                    
+                            <div class="col-md-6 form-group cf">                    
+                                <input type="text" formControlName="first_name" name="first_name" placeholder="Enter First Name*" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" />
+                                <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                                  <div *ngIf="f.first_name.errors.required" class="text-left">Enter First Name</div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 form-group cf">
+                                 <input type="text" formControlName="last_name" name="last_name" placeholder="Enter Last Name*" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
+                                <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                                  <div *ngIf="f.last_name.errors.required" class="text-left">Enter Last Name</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group cf">
+                            <input type="text" id="email" name="email"  formControlName="email" placeholder="Enter Email ID*" class="is-form-control" email="true" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" oninput="this.value = this.value.toLowerCase()">
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback" >
+                                <div *ngIf="f.email.errors.required" class="text-danger text-left">Email is required</div>
+                                <!-- <div *ngIf="f.email.errors.email" class="text-danger text-left">Email must be a valid email address</div> -->
+
+                                <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="text-danger text-left">Email must be a valid email address</div>
+                                
+                            </div>
+                        </div>
+
+
+                        
+
+
+                        <div class="form-group cf">
+                            <input type="number" id="contactnum" name="mobile"  formControlName="mobile" placeholder="Enter Contact Number*" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }">
+                             <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                              <div class="text-danger text-left" *ngIf="f.mobile.errors.required">
+                                  Please enter contact number   
+                              </div>
+                              <div class="text-danger text-left" *ngIf="f.mobile.errors.onlyNumeric">
+                                  Please enter valid contact number 
+                              </div>
+                              <div class="text-danger text-left" *ngIf="f.mobile.errors.minlength">
+                                  Contact number must be atleast 10 characters  
+                              </div>
+                              <div class="text-danger text-left" *ngIf="f.mobile.errors.maxlength">
+                                  Contact number must not exceed 15 characters  
+                              </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group cf">
+                            <input type="text" id="purpose" name="purpose"  formControlName="purpose" placeholder="Enter Subject*" class="is-form-control"  [ngClass]="{ 'is-invalid': submitted && f.purpose.errors }">
+                            <div *ngIf="submitted && f.purpose.errors" class="invalid-feedback" >
+                                <div *ngIf="f.purpose.errors.required" class="text-danger text-left">Subject is required</div>
+                                
+                            </div>
+                        </div>
+                        
+                     
+                        <div class="form-group cf">
+                            <textarea class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.message.errors }" formControlName="message" id="message" name="message" rows="5" placeholder="Purpose.*"></textarea>
+                            <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+                              <div *ngIf="f.message.errors.required" class="text-left">Enter Message</div>
+                            </div>
+                        </div>
+
+                     
+                        <div class="form-group cf">
+                            <button type="submit" class="main-btn md-btn w-100">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+		</div>
+	</div>
+    
+</div>
+<app-footer></app-footer>
+<app-footer-mobile></app-footer-mobile>

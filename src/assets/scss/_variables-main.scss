@@ -1,0 +1,59 @@
+
+$main-fonts: 'Roboto', sans-serif;;
+
+
+$main-black:#000;
+$main-white:#fff;
+$placeholder:lighten($main-black, 80.2%);
+$black-20:lighten($main-black, 15%);
+$black-30:lighten($main-black, 20%);
+$black-40:lighten($main-black, 30%);
+$white-40:lighten($main-white, 30%);
+$black-60:lighten($main-black, 40%);
+$black-80: lighten($main-black, 60%);
+$black-70: lighten($main-black, 80%);
+$black-50: lighten($main-black, 90%);
+$black-95: lighten($main-black, 95%);
+$black-98: lighten($main-black, 99%);
+$gray-second: lighten($main-black, 59%);
+$gray-third: lighten($main-black, 36%);
+$gray-fourth:lighten($main-black, 82%);
+$gray-fifth:lighten($main-black, 85%);
+$gray-six:lighten($main-black, 77.5%);
+$gray-seven:lighten($main-black, 72.5%);
+$gray-eight :lighten($main-black, 25%);
+$gray-nine :lighten($main-black, 74%);
+$gray-ten :lighten($main-black, 95%);
+$primary-btn-color-50:lighten($primary-btn-color, 50%);
+
+/* ----------Spacer-------- */
+
+$space-15:15px;
+$space-0:0px;
+$space-5:5px;
+$space-2:2px;
+$space-10:10px;
+$space-16:16px;
+
+$space-20:20px;
+$space-5: 5px;
+$space-30:30px;
+$space-25:25px;
+$space-35:35px;
+$space-50:50px;
+$space-55:55px;
+$space-40:40px;
+$space-45:45px;
+$space-65:65px;
+$space-70:70px;
+$space-90:90px;
+$space-100:100px;
+
+
+/* ----------media-queries-------- */
+$break-xxl: 1440px;
+$break-extra-large: 1340px;
+$break-large: 1200px;
+$break-medium: 991px;
+$break-small: 767px;
+$break-xtra-small: 576px;

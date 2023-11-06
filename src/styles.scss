@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'assets/scss/fonts.scss';
+
+@import 'assets/scss/variables.scss';
+@import 'assets/scss/_variables-main.scss';
+@import 'assets/scss/_form-elements.scss';
+@import 'assets/scss/_mixins-new.scss';
+@import 'assets/scss/_header-footer-body.scss';
+@import 'assets/scss/_login-signup.scss';
+@import 'assets/scss/global.scss';
+@import 'assets/scss/_training-pages.scss';
+
+
+html, body { height: 100%; transition: .4s ease-in-out; overflow: visible !important; }
+
+a, a:hover, a:focus { text-decoration: none; outline: none; transition: .4s ease-in-out; }
+.main-btn{
+    @include main-btn;
+}
+.second-btn{
+    @include second-btn;
+}
+.outer-main-btn{
+    @include outer-main-btn;
+}
+.outer-dark-btn{
+    @include outer-dark-btn;
+}
+
+.green-btn{
+    @include green-btn;
+}
+.orange-btn{
+    @include orange-btn;
+}
+
+.primary-btn { 
+    line-height:normal; 
+    background-color: $primary-btn-color; 
+    color:$white-color; 
+    font-size: $font-size15; 
+    text-align:center; 
+    font-weight: 500; 
+    border:1px solid $primary-btn-color; 
+    padding:$space-15 $space-20; 
+    border-radius: $radius8; 
+    min-width: 120px; 
+    text-transform:none;
+    &:hover, &:focus{
+        background-color:transparent; 
+        color:$primary-btn-color;
+    }
+}
+.secondary-btn{
+    line-height:normal; 
+    background-color:transparent; 
+    color:$primary-btn-color; 
+    font-size:$font-size15; 
+    font-weight: 500;
+    text-align:center;  
+    border:1px solid $primary-btn-color; 
+    padding:15px 20px;
+    border-radius:$radius8; 
+    vertical-align:top; 
+    min-width: 120px; 
+    text-transform:none;
+    &:hover, &:focus{
+        background-color:$primary-btn-color; 
+        color:$white-color;
+    }
+}
+.form-box{
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: $box-shadow;
+    border-radius: $radius10;
+    padding: $space-50;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

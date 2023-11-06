@@ -1,0 +1,181 @@
+$main-body:            #f7f7f7;
+$inner-body:            #f7f7f7;
+$full-height:          100%;
+$full-width:           100%;
+$v-height:             100vh;
+$width-50:              50%;
+
+$main-body:            #ffffff;
+$inner-body:           #ffffff;
+$font-body:            'Poppins', sans-serif;
+
+
+$white:              #fff;
+$heading-color:      #6F18FF;
+$sub-color:          #282b33;
+$text-color:         #676767;
+$input-color:        #676767;
+$header-bg:          #230751;
+$footer-bg:          #230751;
+$icon-bg-blue:       #02C5FB;
+$copyright:          #fff;
+
+
+$white:              #fff;
+$sub-color:          #282b33;
+$text-color:         #474747;
+$purple-color:       #8014d4;
+$input-color:        #6d7176;
+$footer-bg:          #1a1026;
+$icon-bg-gray:       #f7f7f7;
+$border-bx-color:    #CECECE;
+$how-work-heading:   #c1c1c1;
+$how-desc-color:     #b5b4b4;
+$faq-bg-color:       #f6f6f6;
+$greencolor:         #0f4d0f;
+$skye-blue-color:    #04C3FB;
+$skye-blue-hover:    #06b4e9;
+$body-text:          #676767;
+
+
+
+
+$text-center:          center;
+$text-left:            left;
+$text-right:           right;
+$text-uppercase:       uppercase;
+$text-lowercase:       lowercase;
+$text-capitalize:      capitalize;
+
+$font-size10:           10px;
+$font-size12:           12px;
+$font-size13:           13px;
+$font-size14:           14px;
+$font-size15:           15px;
+$font-size16:           16px;
+$font-size18:           18px;
+$font-size20:           20px;
+$font-size22:           22px;
+$font-size24:           24px;
+$font-size26:           26px;
+$font-size28:           28px;
+$font-size30:           30px;
+$font-size32:           32px;
+$font-size34:           34px;
+$font-size36:           36px;
+$font-size38:           38px;
+$font-size40:           40px;
+$font-size42:           42px;
+$font-size44:           44px;
+$font-size46:           46px;
+$font-size48:           48px;
+$font-size52:           52px;
+$font-size56:           56px;
+$font-size60:           60px;
+$font-size65:           65px;
+$font-size70:           70px;
+$font-size80:           80px;
+$font-size90:           90px;
+$font-size100:          100px;
+
+
+
+$radius_none:          none;
+$radius3:              3px;
+$radius6:              6px;
+$radius8:              8px;
+$radius10:             10px;
+$radius12:             12px;
+$radius20:             20px;
+$radius30:             30px;
+$radius50:             50px;
+$radius100:            100px;
+$radius-circle:        100%;
+
+
+$po-relative:           relative;
+$po-absolute:           absolute;
+$po-fixed:              fixed;
+$po-stick:              sticky;
+$po-static:             static;
+
+
+// $primary-btn-color:          #6F18FF;
+// $primary-btn-hover:          #ffffff;
+
+// $secondary-btn-color:         #ffffff;
+// $secondary-btn-hover:         #6F18FF;
+
+$primary-btn-color:          #6F18FF;
+$primary-btn-hover:          #6011e1;
+
+$secondary-btn-color:         #253138;
+$secondary-btn-hover:         #1d272d;
+
+
+$container-width:      1190px;
+
+
+$d-table:               table;
+$d-cell:                table-cell;
+$d-block:               block;
+$d-inlineBlock:         inline-block;
+$d-none:                none;
+
+
+$fsize10:           10px;
+$fsize12:           12px;
+$fsize13:           13px;
+$fsize14:           14px;
+$fsize15:           15px;
+$fsize16:           16px;
+$fsize18:           18px;
+$fsize20:           20px;
+$fsize22:           22px;
+$fsize24:           24px;
+$fsize26:           26px;
+$fsize28:           28px;
+$fsize30:           30px;
+$fsize32:           32px;
+$fsize34:           34px;
+$fsize36:           36px;
+$fsize38:           38px;
+$fsize40:           40px;
+$fsize42:           42px;
+
+
+$body-color:           #000;
+$black-color:          #000;
+$white-color:          #ffffff;
+$anchor-color:         #000;
+$anchor-hover:         #7f14d4;
+$blue-color:           #284372;
+$font-general:         16px;
+$label-size:           15px;
+$label-color:          #363636;
+$gray-color:           #666;
+$nav-border-color:     #152A49;
+$delete-color:         #B90909;
+$red-color:            #dc3535;
+$green-color:           #19ba5d;
+$border-color:         #cecece;
+$geen-btn-color:         #0E8E51;
+$orange-btn-color:     #EF6E4B;
+$orange-btn-hover:     #f1886b;
+
+
+$gray-bg:              #e7e7e7;
+
+$checkbox-width:       22px;
+
+$borderWidth: 2px;
+$animationTime: 1.5s;
+$border-color-default: #f2f2f2;
+$border-color-fill: #8014d4;
+$size: 50px;
+
+
+$box-shadow: 0px 8px 15px rgba(15, 15, 15, 0.08);
+//Create how many steps
+$howManySteps: 100; //this needs to be even. 
+//for fun try using 20 and changine in the HTML the data-percentage to 15 or 85

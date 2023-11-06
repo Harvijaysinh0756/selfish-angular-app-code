@@ -1,0 +1,18 @@
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
+}
+button:focus {
+    outline: none !important;
+}
+
+.is-form-control {
+    font-size: 13px;
+    
+}
+.sb-outline .sb-wrapper {
+    font-size: 12px !important;
+}

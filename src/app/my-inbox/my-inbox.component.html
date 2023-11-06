@@ -1,0 +1,75 @@
+<app-header></app-header>
+<app-header-mobile></app-header-mobile>
+<div class="page-wrap">
+    <div class="inner-bg-sec cf" style="background-image: url(assets/images-nct/inner-heading-bg.jpg);">
+        <h1>My Inbox</h1>
+    </div>
+    <div class="myinbox-sec cf">
+        <div class="container">
+            <div class="common-tabs-outer cf">
+                <ul class="nav nav-pills justify-content-center" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link active" (click)="getTabData('e')" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Activity</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link" id="profile-tab"  (click)="getTabData('u')" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Friends</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="activity-list-sec">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6 d-md-flex align-items-stretch"  *ngFor="let inbox of InboxData;let i = index;">
+                                    <div class="general-bx myinbox-bx cf">
+                                        <div class="inbox-info cf">
+                                            <h4>{{inbox.title}}</h4>
+                                            <p>{{inbox.description}}</p>
+                                        </div>
+                                        <div class="d-flex participant-outer cf">
+                                            <span>Participants: <strong>{{inbox.total_participate}}</strong></span>
+                                            <a href="chat-detail/{{inbox.chat_id}}" class="main-btn xs-btn ml-auto">View Detail</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-4 d-md-flex align-items-stretch">
+                                    <div *ngIf="notfound" class="mt-3  alert alert-info w-100">Record not found</div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a href="javascript:;" class="main-btn sm-btn mt-2" (click)="getLoadMore()" *ngIf="isLoadMoreShowHide == 'show'">See More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="activity-list-sec">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-3" *ngFor="let inbox of InboxData;let i = index;">
+                                    <div class="general-bx lst-request-bx cf">
+                                        <figure>
+                                            <img src="{{inbox.profile_img}}">
+                                        </figure>
+                                        <div class="list-req-info">
+                                            <!-- <h3>{{inbox.first_name}} {{inbox.last_name}}</h3> -->
+                                            <h3>{{inbox.user_name}}</h3>
+                                            <!-- <p>When you were a kid, what did you dream your life would look like?</p> -->
+                                            <a href="chat-detail/{{inbox.chat_id}}" class="main-btn xs-btn w-auto">View Detail</a>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-md-6 col-lg-4 d-md-flex align-items-stretch">
+                                    <div *ngIf="notfound" class=" mt-3 alert alert-info w-100">Record not found</div>
+                                </div>                               
+                            </div>
+                            <div class="text-center">
+                                <a href="javascript:;" class="main-btn sm-btn mt-2" (click)="getLoadMore()" *ngIf="isLoadMoreShowHide == 'show'">See More</a>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
+<app-footer-mobile></app-footer-mobile>

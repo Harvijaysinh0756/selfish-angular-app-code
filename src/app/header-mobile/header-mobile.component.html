@@ -1,0 +1,27 @@
+<header class="mobile-header-sec cf">
+    <div class="d-flex justify-content-between">
+        <div class="lft-back-ico">
+            <a href="javascript:void(0)" (click)="goBack()">
+                <!-- <i *ngIf="!isHome"><img src="{{leftimg}}"></i> -->
+                <i><img src="{{leftimg}}"></i>
+            </a>
+        </div>
+        <h1 *ngIf="isChatHeader">
+            <figure *ngIf="ischatImage">
+                <img src="{{ischatImage}}">
+            </figure>
+            {{title}}
+        </h1>
+        <h1 *ngIf="!isChatHeader">{{title}}</h1>
+        <div class="rgt-different-ico" *ngIf="!isRightSectionImg">
+            <a type="button" data-toggle="collapse" data-target="#collapsefilter" aria-expanded="false" aria-controls="collapsefilter">
+                <i class="icon-filter-icon" *ngIf="isRighticon"></i>
+            </a>
+        </div>
+        <div class="rgt-different-ico" *ngIf="isRightSectionImg">
+            <a href="/edit-profile-app">
+                <i *ngIf="!isHome"><img src="assets/images-nct/{{icon_name}}"></i>
+            </a>
+        </div>
+    </div>
+</header>

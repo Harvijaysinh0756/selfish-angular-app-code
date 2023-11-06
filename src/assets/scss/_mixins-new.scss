@@ -1,0 +1,279 @@
+
+@mixin bp($point) {
+  @if $point == xxl {
+    @media (max-width: $break-xxl) { @content; }
+  }
+  @else if $point == extra-large-screen {
+    @media (max-width: $break-extra-large) { @content; }
+  }
+  @else if $point == lartge-screen {
+    @media (max-width: $break-large) { @content; }
+  }
+  @else if $point == medium-screen {
+    @media (max-width: $break-medium) { @content; }
+  }
+  @else if $point == small-screen {
+    @media (max-width: $break-small)  { @content; }
+  }
+  @else if $point == extra-small-screen {
+    @media (max-width: $break-xtra-small)  { @content; }
+  }
+}
+.btn.focus, .btn:focus {box-shadow: none; outline: none;}
+@mixin transition($smoth-effect) {
+    -webkit-transition: $smoth-effect;
+    -moz-transition: $smoth-effect;
+    -ms-transition: $smoth-effect;
+    -o-transition: $smoth-effect;
+    transition: $smoth-effect;
+}
+
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+
+@mixin general-bx ($background,$border,$radius20, $full-width) {
+  border-radius: $radius20;
+  border:$border;
+  background-color: $background;
+  width:$full-width;
+}
+
+@mixin border($direction, $width, $style, $color) {
+  border-#{$direction}: $width $style $color;
+}
+
+
+@mixin input-placeholder {
+    :-moz-placeholder {@content}
+    ::-moz-placeholder {@content}
+    :-ms-input-placeholder {@content}
+    ::-webkit-input-placeholder {@content}
+}
+
+
+
+@mixin main-btn {
+  display: $d-inlineBlock; 
+  vertical-align: top; 
+  line-height: 1; 
+  outline: 0; 
+  letter-spacing: 0.5px; 
+  font-weight: 400;
+  background-color: $primary-btn-color; 
+  border: 1px solid $primary-btn-color; 
+  color: $white;
+  border-radius: $radius8 !important; 
+  text-align: $text-center;
+  @include bp(small-screen){
+    letter-spacing: 0.5px;
+    border-radius: $radius30 !important; 
+  }
+  cursor: pointer;
+  &:hover, &:focus{
+      outline: 0; 
+      color: $white; 
+      background-color: $primary-btn-hover; 
+      border: 1px solid $primary-btn-hover; 
+  }
+  &:disabled{
+    cursor:auto;
+    opacity: 0.4;
+    &:hover, &:focus{
+      background-color: $primary-btn-hover;
+    }
+  }
+  
+}
+
+@mixin second-btn{
+  display: $d-inlineBlock; 
+  vertical-align: top; 
+  line-height: 1; 
+  outline: 0; 
+  letter-spacing: 0.5px; 
+  font-weight: 400;
+  background-color: $skye-blue-color; 
+  border: 1px solid $skye-blue-color; 
+  color: $white;
+  border-radius: $radius8 !important; 
+  text-align: $text-center;
+  @include bp(small-screen){
+    border-radius: $radius30 !important; 
+  }
+  cursor: pointer;
+    &:hover, &:focus{
+        outline: 0;
+        color: $white; 
+        background-color: $skye-blue-hover; 
+        border: 1px solid $skye-blue-hover; 
+    }
+}
+
+@mixin outer-main-btn{
+  display: $d-inlineBlock; 
+  vertical-align: top; 
+  line-height: 1; 
+  outline: 0; 
+  letter-spacing: 2px; 
+  font-weight: 500;
+  background-color: transparent; 
+  border: 1px solid $primary-btn-color; 
+  color: $primary-btn-color;
+  border-radius: $radius8 !important; 
+  text-align: $text-center;
+  @include bp(small-screen){
+    border-radius: $radius30 !important; 
+  }
+  @include bp(small-screen){
+    letter-spacing: 0.5px;
+  }
+  cursor: pointer;
+  &:hover, &:focus{
+      outline: 0; 
+      color: $white; 
+      background-color: $primary-btn-color; 
+  }
+  &:disabled{
+    cursor:auto;
+    opacity: 0.4;
+    &:hover, &:focus{
+      background-color: $primary-btn-hover;
+    }
+  }
+  
+}
+
+
+@mixin green-btn {
+  display: $d-inlineBlock; 
+  vertical-align: top; 
+  line-height: 1; 
+  outline: 0; 
+  letter-spacing: 0.5px; 
+  font-weight: 400;
+  background-color: $geen-btn-color; 
+  border: 1px solid $geen-btn-color; 
+  color: $white;
+  border-radius: $radius8 !important; 
+  text-align: $text-center;
+  @include bp(small-screen){
+    letter-spacing: 0.5px;
+    border-radius: $radius30 !important; 
+  }
+  cursor: pointer;
+  &:hover, &:focus{
+      outline: 0; 
+      color: $white; 
+      background-color: #0fb365; 
+      border: 1px solid #0fb365; 
+  }
+  &:disabled{
+    cursor:auto;
+    opacity: 0.4;
+    &:hover, &:focus{
+      background-color: #0fb365;
+    }
+  }
+  
+}
+
+@mixin orange-btn {
+  display: $d-inlineBlock; 
+  vertical-align: top; 
+  line-height: 1; 
+  outline: 0; 
+  letter-spacing: 0.5px; 
+  font-weight: 400;
+  background-color: $orange-btn-color; 
+  border: 1px solid $orange-btn-color; 
+  color: $white;
+  border-radius: $radius8 !important; 
+  text-align: $text-center;
+  @include bp(small-screen){
+    letter-spacing: 0.5px;
+    border-radius: $radius30 !important; 
+  }
+  cursor: pointer;
+  &:hover, &:focus{
+      outline: 0; 
+      color: $white; 
+      background-color: $orange-btn-hover; 
+      border: 1px solid $orange-btn-hover; 
+  }
+  &:disabled{
+    cursor:auto;
+    opacity: 0.4;
+    &:hover, &:focus{
+      background-color: $orange-btn-hover;
+    }
+  }
+  
+}
+
+@mixin outer-dark-btn{
+  display: $d-inlineBlock; 
+  vertical-align: top; 
+  line-height: 1; 
+  outline: 0; 
+  letter-spacing: 2px; 
+  font-weight: 500;
+  background-color: transparent; 
+  border: 1px solid $heading-color; 
+  color: $heading-color;
+  border-radius: $radius30 !important; 
+  text-transform: $text-uppercase; 
+  text-align: $text-center;
+  @include bp(small-screen){
+    letter-spacing: 0.5px;
+    border-radius: $radius30 !important; 
+  }
+  cursor: pointer;
+  &:hover, &:focus{
+      outline: 0; 
+      color: $white; 
+      background-color: $heading-color; 
+  }
+  &:disabled{
+    cursor:auto;
+    opacity: 0.4;
+    &:hover, &:focus{
+      background-color: $primary-btn-hover;
+    }
+  }
+  
+}
+
+
+
+
+@mixin cursor-disabled() {
+  cursor: not-allowed;
+}
+
+@mixin box-sizing($fmt) {
+  -webkit-box-sizing: $fmt;
+     -moz-box-sizing: $fmt;
+          box-sizing: $fmt;
+}
+
+@mixin box-shadow($fmt) {
+  -webkit-box-shadow: $fmt;
+          box-shadow: $fmt;
+}
+

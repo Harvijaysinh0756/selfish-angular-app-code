@@ -1,0 +1,117 @@
+<app-header></app-header>
+<app-header-mobile></app-header-mobile>
+<div class="page-wrap">
+    <div class="inner-bg-sec cf" style="background-image: url(assets/images-nct/inner-heading-bg.jpg);">
+        <h1>My Profile</h1>
+    </div>
+    <div class="profile-sec cf">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-lg-2">
+                    <div class="myprofile-pic cf">
+                        <figure>
+                            <img [src]="this.profileImg ? this.profileImg : 'assets/images-nct/profile-pic.jpg'" >
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-md-9 col-lg-10">
+                    <div class="my-profile-outer cf">
+                        <h2>{{this.userProfile.first_name}}</h2>
+                        <p><i class="icon-email-icon"></i>{{this.userProfile.email}}</p>
+                        <p *ngIf="this.userProfile.mobile"><i class="icon-phone-icon"></i>+1 {{this.userProfile.mobile}}</p>
+                        <p>Email address and phone number is visible only to you.</p>
+                        <div class="edit-profile-btn">
+                            <a href="" data-toggle="modal" data-target="#editProfileModal" class="main-btn xs-btn">Update profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-desc">
+                <h3>Your greatest superpower.</h3>
+                <p>{{this.userProfile.about}}</p>
+            </div>
+
+
+                
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close"  aria-label="Close">
+                
+              </button>
+          <h5 class="modal-title" id="editProfileModalLabel">Update Profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="icon-close-icon"></i></span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="edit-profile-outer">
+                    
+                    <form id='frmProfileEdit' [formGroup]="frmProfileEdit" name="frmProfileEdit" method="POST" (ngSubmit)="submitProfileEdit()" novalidate>
+                        <div class="form-group cf">
+                            <div class="myprofile-pic cf">
+                                <div class="change-pic">
+                                    <input type="file" id="profile_img" accept="image/*"  (change)="onChange($event)">
+                                    <i class="fa fa-camera"></i>
+                                </div>
+                                <figure>
+                                    <img  class="preview" [src]="this.profileImg ? this.profileImg : 'assets/images-nct/profile-pic.jpg'">
+                                </figure>
+                            </div>
+                            <small>Better Result please upload Square image like : 200*200</small>
+                        </div>
+                        <div class="form-group cf">
+                            <input type="text" formControlName="first_name" id="first_name" name="first_name" placeholder="Enter First Name*" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" >
+                            <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                              <div *ngIf="f.first_name.errors.required" class="text-left">Enter First Name</div>
+                            </div>
+                        </div>
+                        <div class="form-group cf">
+                            <input type="text" formControlName="last_name" id="last_name" name="last_name" placeholder="Enter Last Name*" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" >
+                            <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                              <div *ngIf="f.last_name.errors.required" class="text-left">Enter First Name</div>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group cf">
+                            <input type="text" formControlName="mobile" id="mobile" name="mobile" placeholder="Enter Contact Number*" class="is-form-control" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" value="{{this.userProfile.mobile}}">
+                            <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                                  <div class="text-danger text-left" *ngIf="f.mobile.errors.required">
+                                      Please enter contact number   
+                                  </div>
+                                  <div class="text-danger text-left" *ngIf="f.mobile.errors.onlyNumeric">
+                                      Please enter valid contact number 
+                                  </div>
+                                  <div class="text-danger text-left" *ngIf="f.mobile.errors.minlength">
+                                      Contact number must be atleast 10 characters  
+                                  </div>
+                                  <div class="text-danger text-left" *ngIf="f.mobile.errors.maxlength">
+                                      Contact number must not exceed 15 characters  
+                                  </div>
+                            </div>
+                        </div> -->
+                        <div class="form-group cf">
+                            <textarea rows="5" id="about" name="about" formControlName="about" class="is-form-control" placeholder="What is your greatest superpower?*" value="{{this.userProfile.about}}" [ngClass]="{ 'is-invalid': submitted && f.about.errors }"></textarea>
+                            <div *ngIf="submitted && f.about.errors" class="invalid-feedback">
+                              <div *ngIf="f.about.errors.required" class="text-left">Please enter what is your greatest superpower ?</div>
+                            </div>
+                        </div>
+                        <div class="form-group cf">
+                            <button type="submit" class="main-btn md-btn mr-md-2 mr-1">Update</button>
+                            <button type="reset" class="outer-main-btn md-btn" data-dismiss="modal"  #closeBtn>Cancel</button>
+                        </div>
+                    </form>
+                
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<app-footer></app-footer>
+<app-footer-mobile></app-footer-mobile>

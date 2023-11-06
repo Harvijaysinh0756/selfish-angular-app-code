@@ -1,0 +1,65 @@
+<app-header></app-header>
+<app-header-mobile></app-header-mobile>
+<div class="page-wrap">
+    <div class="inner-bg-sec cf" style="background-image: url(assets/images-nct/inner-heading-bg.jpg);">
+        <h1>List of Requests</h1>
+    </div>
+    <div class="list-request-sec cf">
+        <div class="container">
+            <div class="row">
+
+
+                 <div class="col-md-6 col-lg-3" *ngFor="let request_user of AlllistOfRequest;let i = index;">
+                    <div class="general-bx lst-request-bx cf">
+                        <figure>
+                            <img src="{{request_user.profile_img}}">
+                        </figure>
+
+
+                        <div class="list-req-info" *ngIf="aceeptRejectAction">
+                            <h3><a href="/viewprofile/{{request_user.reuested_user_id}}">{{request_user.first_name}} {{request_user.last_name}}</a></h3>
+                            <div *ngIf="request_user.reuest_status == 'p';then content else other_content">here is ignored</div>
+                            <ng-template #content>
+                                <a href="javascript:;" (click)="actionRequest('a',request_user.event_req_id)" class="main-btn xs-btn w-auto">Accept</a>
+                                <a href="javascript:;" (click)="actionRequest('r',request_user.event_req_id)" class="second-btn xs-btn w-auto">Decline</a>
+                            </ng-template>
+                            <ng-template #other_content>
+                                <div *ngIf="request_user.reuest_status == 'a';then acceptedContent else rejectedContent">here is ignored</div>
+                                <ng-template #acceptedContent><a href="javascript:;" class="main-btn xs-btn w-auto">Accepted</a></ng-template>
+                                <ng-template #rejectedContent><a href="javascript:;" class="second-btn xs-btn w-auto">Rejected</a></ng-template>
+                            </ng-template>
+                        </div>
+
+
+                        <div class="list-req-info" *ngIf="!aceeptRejectAction">
+                            <h3><a href="/viewprofile/{{request_user.reuested_user_id}}">{{request_user.first_name}} {{request_user.last_name}}</a></h3>
+
+                            <span href="javascript:;" *ngIf="request_user.reuest_status == 'p'" class="orange-btn xs-btn w-auto">Awaiting Response</span>
+                            <span href="javascript:;" *ngIf="request_user.reuest_status == 'a'" class="main-btn xs-btn w-auto">Accepted</span>
+                            <span href="javascript:;" *ngIf="request_user.reuest_status == 'r'" class="second-btn xs-btn w-auto">Rejected</span>
+
+                            
+                            
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 d-md-flex align-items-stretch">
+                    <div *ngIf="notfoundListofRequest" class="alert alert-info w-100">Record not found</div>
+                </div>
+
+
+               
+
+            </div>
+            <div class="text-center">
+                <a href="javascript:;" class="main-btn sm-btn mt-2" (click)="getLoadMore()" *ngIf="isLoadMoreShowHide == 'show'">See More</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<app-footer></app-footer>
+<app-footer-mobile></app-footer-mobile>
